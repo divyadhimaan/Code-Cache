@@ -1,0 +1,6 @@
+[build]
+  functions = "functions"
+  publish = "build"
+
+[context.production.environment]
+  FLASK_ENV = "production"
