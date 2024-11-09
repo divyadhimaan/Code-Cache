@@ -56,3 +56,46 @@ document.getElementById('tags-filter')?.addEventListener('change', function () {
     // Redirect the page to apply the filter
     window.location.href = url.toString();
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tagsContainer = document.getElementById("tags-container");
+    const selectedTagsInput = document.getElementById("selected_tags");
+
+    // Initialize a set to keep track of selected tags
+    let selectedTags = new Set(selectedTagsInput.value.split(',').filter(tag => tag));  // Pre-select tags if available
+
+    // Mark selected tags as selected on page load
+    tagsContainer.querySelectorAll('.tag-badge').forEach(badge => {
+        const tagName = badge.getAttribute('data-tag');
+        if (selectedTags.has(tagName)) {
+            badge.classList.add('selected');
+        }
+    });
+
+    // Toggle selection of tags when clicked
+    tagsContainer.addEventListener("click", function(event) {
+        const clickedBadge = event.target;
+
+        if (clickedBadge.classList.contains("tag-badge")) {
+            clickedBadge.classList.toggle("selected");
+
+            const tagName = clickedBadge.getAttribute("data-tag");
+
+            // Toggle the tag in the selectedTags set
+            if (clickedBadge.classList.contains("selected")) {
+                selectedTags.add(tagName);
+            } else {
+                selectedTags.delete(tagName);
+            }
+
+            // Update the hidden input with the selected tags
+            selectedTagsInput.value = Array.from(selectedTags).join(",");
+        }
+    });
+
+    // Form submission event to include selected tags
+    document.querySelector("form").addEventListener("submit", function() {
+        selectedTagsInput.value = Array.from(selectedTags).join(",");
+    });
+});

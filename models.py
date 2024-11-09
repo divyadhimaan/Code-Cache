@@ -6,7 +6,7 @@ class Question(BaseModel):
     question_title: str
     topic: str
     difficulty: str
-    revision: Optional[bool] = False
+    revision: Optional[bool] = 0
     link: str
     notes: Optional[str] = None  # This will store the content of the .md file
     additional_tags: List[str]

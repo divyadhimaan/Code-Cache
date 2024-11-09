@@ -1,120 +1,174 @@
 body {
-        padding: 20px;
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #f2f2f2;
-      }
-      .code-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #859F3D;
-        color: white;
-        font-size: 18px;
-        padding: 15px;
-        border-radius: 50%;
-        border: none;
-        cursor: pointer;
-    }
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}
+.code-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #859f3d;
+  color: white;
+  font-size: 18px;
+  padding: 15px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
 
-    .code-button i {
-        font-size: 20px;
-    }
+.code-button i {
+  font-size: 20px;
+}
 
-    .code-button:hover {
-        background-color: #CBD2A4;
-        color: black;
-    }
-      .view-button {
-        background-color: #859F3D;
-        color: white;
-        padding: 5px 12px;
-        border-radius: 5px;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        font-size: 14px;
-      }
-      .view-button i {
-        margin-right: 5px;
-      }
-      .view-button:hover {
-        background-color: #CBD2A4;
-        color: black;
-      }
-      .link-icon {
-        color: #859F3D;
-        font-size: 18px;
-        text-decoration: none;
-      }
-      .link-icon:hover {
-        color: black;
-      }
-      .filter-container {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-radius: 8px;
-    }
+.code-button:hover {
+  background-color: #cbd2a4;
+  color: black;
+}
+.view-button {
+  background-color: #859f3d;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+}
+.view-button i {
+  margin-right: 5px;
+}
+.view-button:hover {
+  background-color: #cbd2a4;
+  color: black;
+}
+.link-icon {
+  color: #859f3d;
+  font-size: 18px;
+  text-decoration: none;
+}
+.link-icon:hover {
+  color: black;
+}
+.filter-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 8px;
+}
 
-    .filter-tag {
-        padding: 8px 12px;
-        border-radius: 5px;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        transition: transform 0.2s, box-shadow 0.2s;
-        color: black;
-        background-color: #CBD2A4;
-    }
+.filter-tag {
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: black;
+  background-color: #cbd2a4;
+}
 
-    .filter-tag:hover {
-        transform: scale(1.05);
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        background-color: #859F3D;
-        color: white;
-    }
+.filter-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  background-color: #859f3d;
+  color: white;
+}
 
-    /* Active tag style */
-    .filter-tag.active {
-        border: 2px solid rgba(0, 0, 0, 0.4);
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
-        transform: scale(1.1);
-        background-color: #859F3D;
-        color: white;
-    }
-    .table-tag {
-        display: inline-block;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-decoration: none;
-        background-color: #859f3d;
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-      .star-rating {
-        font-size: 24px;
-        cursor: pointer;
-        color: #d3d3d3;
-      }
+/* Active tag style */
+.filter-tag.active {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+  background-color: #859f3d;
+  color: white;
+}
+.table-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #859f3d;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.star-rating {
+  font-size: 24px;
+  cursor: pointer;
+  color: #d3d3d3;
+}
 
-      .star-rating .fa-star {
-        transition: color 0.2s;
-      }
+.star-rating .fa-star {
+  transition: color 0.2s;
+}
 
-      .star-rating .fa-star.checked {
-        color: #ffb400;
-      }
+.star-rating .fa-star.checked {
+  color: #ffb400;
+}
+
+/* Container for tags filter */
+.tags-filter-container {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Label styling */
+.tags-filter-label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Styling for the dropdown select */
+.tags-filter-dropdown {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #859f3d;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.tags-filter-dropdown:focus {
+  border-color: #cbd2a4;
+  box-shadow: 0 0 5px rgba(133, 159, 61, 0.5);
+}
+
+/* Add some spacing between the label and select dropdown */
+.tags-filter-container select {
+  margin-top: 10px;
+}
+
+/* Styling for the options inside the dropdown */
+.tags-filter-dropdown option {
+  padding: 10px;
+  font-size: 14px;
+}
+
+/* Additional hover effect for options */
+.tags-filter-dropdown option:hover {
+  background-color: #f1f1f1;
+}

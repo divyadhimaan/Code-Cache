@@ -38,6 +38,44 @@ input[type="submit"]:hover, button:hover {
     background-color: #A2B84A;
 }
 
+.tags-filter-container {
+    margin-bottom: 20px;
+}
+
+.tags-badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-badge {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+}
+
+.tag-badge.selected {
+    background-color: #A2B84A;
+    color: white;
+    border-color: #A2B84A;
+}
+
+.tag-badge:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.tag-badge.selected:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: #004085;
+}
+
+
 /* Responsiveness */
 @media (max-width: 600px) {
     form {

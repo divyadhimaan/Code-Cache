@@ -85,9 +85,9 @@ def view_cache():
             questions = collection.find({"additional_tags": selected_tag}) if collection is not None else []
             
         
-        
-        tags = db['tags'].find()
-        return render_template('view_cache.html', questions=questions, topics=PREDEFINED_TOPICS, selected_topics=selected_topics,tags=tags, selected_tag=selected_tag)
+        all_tags = list(collection.distinct("additional_tags"))
+        print("Tags available: ",all_tags)
+        return render_template('view_cache.html', questions=questions, topics=PREDEFINED_TOPICS, selected_topics=selected_topics,tags=all_tags, selected_tag=selected_tag)
     
     except Exception as e:
         return render_template('500.html', error=str(e)), 500
@@ -122,7 +122,13 @@ def add_question():
             notes_file = request.files.get('notes_file')
             notes_content = ""
             
-            additional_tags = request.form.getlist('additional_tags')
+            selected_tags = request.form.get('selected_tags')
+            if selected_tags:
+                tags_list = selected_tags.split(',')
+                print("Selected tags:", tags_list)
+            
+            additional_tags = tags_list
+            
             new_tag = request.form.get('new_tag')
             if new_tag:
                 additional_tags.append(new_tag)
@@ -150,7 +156,7 @@ def add_question():
                 revision=revision,
                 link=link,
                 notes=notes_content ,
-                additional_tags=additional_tags
+                additional_tags=additional_tags,
             )
 
             # Insert the question into the collection
@@ -159,9 +165,8 @@ def add_question():
             return redirect(url_for('view_cache'))
 
         # If GET request, render the form
-        tags = db['tags'].find()
-        print("Tags: %s", tags)
-        return render_template('add_question.html', topics=PREDEFINED_TOPICS, difficulties=DIFFICULTY_LEVELS,tags=tags)
+        all_tags = list(collection.distinct("additional_tags"))
+        return render_template('add_question.html', topics=PREDEFINED_TOPICS, difficulties=DIFFICULTY_LEVELS,tags=all_tags, new_tag_option=True)
 
     except Exception as e:
         return render_template('500.html', error=str(e)), 500
@@ -191,11 +196,20 @@ def edit_question(question_id):
                     updated_question['notes'] = file.read()
                     
             current_tags = question.get('additional_tags', [])
+            
+            selected_tags = request.form.get('selected_tags')
+            if selected_tags:
+                tags_list = selected_tags.split(',')
+                print("Selected tags:", tags_list)
 
             # Get new tags entered by the user and ensure no duplicates
             new_tags = request.form.getlist('additional_tags')
             new_tag = request.form.get('new_tag')
+            if new_tag:
+                # If a new tag is provided, append it to the list
+                new_tags.append(new_tag)
             updated_tags = list(set(current_tags + new_tags))  # Combine and remove duplicates
+            print("updated tags", updated_tags)
 
             # Update the question with the new tags
             updated_question['additional_tags'] = updated_tags
@@ -204,13 +218,14 @@ def edit_question(question_id):
                 collection.update_one({"question_id": question_id}, {"$set": updated_question})
             return redirect(url_for('view_cache'))
 
+        all_tags = list(collection.distinct("additional_tags"))
         return render_template('add_question.html', 
                                question=question,
                                topics=PREDEFINED_TOPICS, 
                                difficulties=DIFFICULTY_LEVELS,
                                edit_mode=True,
                                selected_tags=question.get('additional_tags', []),
-                               tags=db['tags'].find(),
+                               tags=all_tags,
                                new_tag_option=True)
     
     except Exception as e:

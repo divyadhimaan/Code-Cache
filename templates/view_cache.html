@@ -27,16 +27,15 @@
     </div>
 
 
-    <div>
-        <label for="tags-filter">Filter by Tags</label>
-        <select id="tags-filter" name="tags" onchange="filterByTags()">
-            <option value="All">All</option>
+    <div class="tags-filter-container">
+        <label for="tags-filter" class="tags-filter-label">Filter by Tags</label>
+        <select id="tags-filter" name="tags" class="tags-filter-dropdown" onchange="filterByTags()">
+            <option value="All" {% if selected_tag == 'All' %}selected{% endif %}>All</option>
             {% for tag in tags %}
-                <option value="{{ tag['tag_name'] }}">{{ tag['tag_name'] }}</option>
+                <option value="{{ tag }}" {% if tag == selected_tag %}selected{% endif %}>{{ tag }}</option>
             {% endfor %}
         </select>
     </div>
-    
 
    
     <table>
