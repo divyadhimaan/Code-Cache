@@ -4,7 +4,7 @@
 
 [context.production.environment]
   FLASK_ENV = "production"
-  PYTHON_VERSION = "3.9"  # Specify Python 3.9 (or newer version)
+  PYTHON_VERSION = "3.9"
 
 [build.environment]
-  PYTHON_VERSION = "3.9"  # Ensure Netlify uses Python 3.9
+  PIP_VERSION = "24.3.1"  # Latest pip version
