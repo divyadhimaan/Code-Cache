@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+  }
+
+  .edit-button {
+    background-color: #CBD2A4;
+    color: black;
+    font-size: 14px;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .edit-button i {
+    margin-right: 5px;
+  }
+
+  .edit-button:hover {
+    background-color: #859F3D;
+    color: white;
+  }
+
+  .question-details {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .question-details div {
+    font-weight: bold;
+  }
+
+  .notes-container {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .notes-container h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+  }
+
+  .notes-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  .notes-content code {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    color: #d14;
+  }
+
+  .notes-container a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #CBD2A4;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .notes-container a:hover {
+    background-color: #859F3D;
+    color: white;
+  }
+
+  .back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #859F3D;
+    color: white;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .back-button i {
+    font-size: 20px;
+  }
+
+  .back-button:hover {
+    background-color: #CBD2A4;
+    color: black;
+  }
+
+  .star-rating .fa-star {
+    cursor: pointer;
+    font-size: 2em;
+    color: gray;
+}
+
+.star-rating .fa-star.checked {
+    color: gold;
+}

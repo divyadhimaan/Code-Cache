@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>{% if edit_mode %}Edit Question{% else %}Add New Question{% endif %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_question.css') }}">
+
+</head>
+<body>
+    <h1 style="text-align:center;">{% if edit_mode %}Edit Question{% else %}Add a New Question{% endif %}</h1>
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="question_title">Question Title</label>
+            <input type="text" id="question_title" name="question_title" required
+                value="{{ question['question_title'] if edit_mode else '' }}" >
+        </div>
+
+        <div class="form-group">
+            <label for="topic">Topic</label>
+            <select id="topic" name="topic" required>
+                {% for topic in topics %}
+                    <option value="{{ topic }}" 
+                        {% if edit_mode and topic in question['topic'] %}selected{% endif %}>
+                        {{ topic }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="difficulty">Difficulty</label>
+            <select id="difficulty" name="difficulty" required>
+                {% for difficulty in difficulties %}
+                    <option value="{{ difficulty }}"
+                        {% if edit_mode and question['difficulty'] == difficulty %}selected{% endif %}>
+                        {{ difficulty }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="revision">Revision</label>
+            <input type="checkbox" id="revision" name="revision" {% if edit_mode and question['revision'] %}checked{% endif %}>
+        </div>
+
+        <div class="form-group">
+            <label for="link">Link</label>
+            <input type="url" id="link" name="link" required value="{{ question['link'] if edit_mode else '' }}">
+        </div>
+
+        <div class="form-group">
+            <label for="notes_file">{% if edit_mode %}Update Notes{% else %}Upload Notes{% endif %} (.md)</label>
+            <input type="file" id="notes_file" name="notes_file" accept=".md">
+            {% if edit_mode and question['notes'] %}
+                <p>Current notes available.</p>
+            {% endif %}
+        </div>
+
+        <label for="additional_tags">Additional Tags:</label>
+        <select id="additional_tags" name="additional_tags" multiple>
+            {% for tag in tags %}
+                <option value="{{ tag }}" {% if tag in selected_tags %}selected{% endif %}>{{ tag }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="new_tag" placeholder="Add new tag" />
+
+        <button type="submit">{% if edit_mode %}Update{% else %}Add Question{% endif %}</button>
+    </form>
+    <br>
+    <a href="/">
+        <button class="home-button">
+            <i class="fas fa-home"></i> 
+        </button>
+    </a>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <title>Code Cachek</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_cache.css') }}">
+    </head>
+  </head>
+  <body>
+    <h1>Code Cache</h1>
+
+    <div class="filter-container">
+        <a href="/view_cache" class="filter-tag {% if selected_topic == 'All' %}active{% endif %}" {% if selected_topic == 'All' %}style="background-color: #859F3D; "{% else %}style="background-color: #CBD2A4; "{% endif %}>
+            All
+        </a>
+        {% for topic in topics %}
+        <a href="?topic={{ topic }}" 
+           class="filter-tag {% if topic in selected_topics %}active{% endif %}">
+            {{ topic }}
+        </a>
+        {% endfor %}
+    </div>
+
+
+    <div>
+        <label for="tags-filter">Filter by Tags</label>
+        <select id="tags-filter" name="tags" onchange="filterByTags()">
+            <option value="All">All</option>
+            {% for tag in tags %}
+                <option value="{{ tag['tag_name'] }}">{{ tag['tag_name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+
+   
+    <table>
+      <thead>
+        <tr>
+          <th>Question ID</th>
+          <th>Topic</th>
+          <th>Question Title</th>
+          <th>Difficulty</th>
+          <th>Revision</th>
+          <th>Notes</th>
+          <th>Links</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for question in questions %}
+        <tr>
+          <td>{{ question['question_id'] }}</td>
+          <td>
+            <span class="table-tag">
+              {% for topic in question['topic'] %}
+                {{ topic }}
+              {% endfor %}
+            </span>
+          </td>
+          <td>{{ question['question_title'] }}</td>
+          <td>{{ question['difficulty'] }}</td>
+          <td>
+            <div class="star-rating" data-question-id="{{ question['question_id'] }}">
+                <i class="fas fa-star {% if question['revision'] == 1 %}checked{% endif %}" data-star="1"></i>
+              </div>
+          </td>
+          <td>
+            {% if question['notes'] %}
+              <a
+                href="{{ url_for('view_question', question_id=question['question_id']) }}"
+                class="view-button"
+              >
+                <i class="fas fa-file-alt"></i> View Notes
+              </a>
+            {% else %}
+              <a
+                href="{{ url_for('edit_question', question_id=question['question_id']) }}"
+                class="view-button"
+              >
+                <i class="fas fa-plus-circle"></i> Add Notes
+              </a>
+            {% endif %}
+          </td>
+          <td>
+            <a href="{{ question['link'] }}" target="_blank" class="link-icon">
+              <i class="fas fa-external-link-alt"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/add">
+        <button class="code-button">
+            <i class="fas fa-code"></i> 
+        </button>
+    </a>
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+
+  </body>
+</html>
