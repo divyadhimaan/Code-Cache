@@ -1,6 +1,10 @@
 [build]
   functions = "functions"
-  publish = "build"
+  publish = "."
 
 [context.production.environment]
   FLASK_ENV = "production"
+  PYTHON_VERSION = "3.9"  # Specify Python 3.9 (or newer version)
+
+[build.environment]
+  PYTHON_VERSION = "3.9"  # Ensure Netlify uses Python 3.9
